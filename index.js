@@ -2,20 +2,14 @@ const express = require('express');
 const app = express();
 const db = require('./models/db');
 const { isValidSchool,calculateDistance } = require('./utils/func');
+const path = require("path")
 
 app.use(express.json());
 
 // Test route to check DB connection
-app.get('/test', async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT 1');    
-    console.log(rows);
+app.get('/', async (req, res) => {
     
-    res.send('Database connected successfully!');
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Database connection failed.');
-  }
+  res.sendFile(path.join(__dirname,"public","index.html"));
 });
 
 

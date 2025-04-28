@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Management Api!</title>
+    <style>
+        *{
+            /* background-color: #0d1117; */
+            background-color: #f2f2f2;
+            color: #0d1117;
+        }
+        pre{
+            
+            
+            margin-bottom: 1rem;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <h1 id="-school-management-apis-documentation">📚 School Management APIs Documentation</h1>
+    <h2>Visit <a href="https://github.com/K-logeshwaran/school-management-api-assignment">GitHub!</a> for better documentation</h2>
+    <h2>OR  <a href="https://school-management-api-assignment-jszw.onrender.com/listSchools?latitude=12.9716&longitude=76.9946">Click here!</a> to test api</h2>
+
+    <h2 id="-base-url">📌 Base URL</h2>
+    <blockquote>
+    <p><code>https://school-management-api-assignment-jszw.onrender.com</code></p>
+    </blockquote>
+    <hr>
+    <h3 id="-endpoints">📖 Endpoints</h3>
+    <hr>
+    <h4 id="-1-add-a-new-school">➡️ 1. Add a New School</h4>
+    <ul>
+    <li><strong>Endpoint:</strong> <code>/addSchool</code></li>
+    <li><strong>Method:</strong> <code>POST</code></li>
+    <li><strong>Description:</strong> Adds a new school record to the database.</li>
+    </ul>
+    <h4 id="-request-body-json-">🔹 Request Body (JSON):</h4>
+    <pre><code class="lang-json">{
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"School Name"</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">"School Address"</span>,
+      <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">12.9716</span>,
+      <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">77.5946</span>
+    }
+    </code></pre>
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 16px;">
+        <thead>
+          <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Field</th>
+            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Type</th>
+            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Required</th>
+            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px;">name</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">string</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Name of the school</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px;">address</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">string</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Address of the school</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px;">latitude</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">float</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Latitude coordinate of school</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px;">longitude</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">float</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Yes</td>
+            <td style="border: 1px solid #ddd; padding: 12px;">Longitude coordinate of school</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    <hr>
+    <h4 id="-success-response-201-created-">🔹 Success Response (201 Created):</h4>
+    <pre><code class="lang-json">{
+      <span class="hljs-attr">"message"</span>: <span class="hljs-string">"School added successfully"</span>,
+      <span class="hljs-attr">"schoolId"</span>: <span class="hljs-number">1</span>
+    }
+    </code></pre>
+    <h4 id="-error-response-400-bad-request-">🔹 Error Response (400 Bad Request):</h4>
+    <pre><code class="lang-json">{
+      <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Invalid input data"</span>
+    }
+    </code></pre>
+    <hr>
+    <h3 id="-2-list-schools-sorted-by-proximity">➡️ 2. List Schools Sorted by Proximity</h3>
+    <ul>
+    <li><strong>Endpoint:</strong> <code>/listSchools</code></li>
+    <li><strong>Method:</strong> <code>GET</code></li>
+    <li><strong>Description:</strong> Fetches all schools and sorts them based on the distance from the user&#39;s location.</li>
+    </ul>
+    <h4 id="-query-parameters-">🔹 Query Parameters:</h4>
+    <table>
+    <thead>
+    <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>latitude</td>
+    <td>float</td>
+    <td>Yes</td>
+    <td>User&#39;s current latitude</td>
+    </tr>
+    <tr>
+    <td>longitude</td>
+    <td>float</td>
+    <td>Yes</td>
+    <td>User&#39;s current longitude</td>
+    </tr>
+    </tbody>
+    </table>
+    <blockquote>
+    <p>Example:<br><code>GET /listSchools?latitude=12.9716&amp;longitude=77.5946</code></p>
+    </blockquote>
+    <hr>
+    <h4 id="-success-response-200-ok-">🔹 Success Response (200 OK):</h4>
+    <pre><code class="lang-json">[
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Greenwood High School"</span>,
+        <span class="hljs-attr">"address"</span>: <span class="hljs-string">"Bangalore"</span>,
+        <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">12.8875</span>,
+        <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">77.6408</span>,
+        <span class="hljs-attr">"distance"</span>: <span class="hljs-string">"5.12"</span>
+      },
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"National Public School"</span>,
+        <span class="hljs-attr">"address"</span>: <span class="hljs-string">"Koramangala"</span>,
+        <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">12.9352</span>,
+        <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">77.6245</span>,
+        <span class="hljs-attr">"distance"</span>: <span class="hljs-string">"3.56"</span>
+      }
+    ]
+    </code></pre>
+    <ul>
+    <li>The schools are sorted in ascending order of distance (nearest first).</li>
+    <li><code>distance</code> is in <strong>kilometers</strong>, rounded to <strong>2 decimal places</strong>.</li>
+    </ul>
+    <hr>
+    <h4 id="-error-response-400-bad-request-">🔹 Error Response (400 Bad Request):</h4>
+    <pre><code class="lang-json">{
+      <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Invalid latitude or longitude"</span>
+    }
+    </code></pre>
+    <hr>
+    <h1 id="-postman-collection">📦 Postman Collection</h1>
+    <ul>
+    <li>A Postman collection containing example requests for both endpoints is also available.</li>
+    <li><a href="https://logeshwarank-4069748.postman.co/workspace/Logeshwaran-K%27s-Workspace~669cc222-714c-4a12-8f4b-8df7dacd697e/collection/44494264-75687e22-051a-4ddb-955f-b60bda8484ee?action=share&amp;creator=44494264"><strong>Postman Collection Link</strong></a></li>
+    </ul>
+    <hr>
+    <h1 id="-tech-stack">🛠 Tech Stack</h1>
+    <ul>
+    <li><strong>Backend Framework:</strong> Node.js + Express.js</li>
+    <li><strong>Database:</strong> MySQL (hosted on Railway)</li>
+    <li><strong>Hosting:</strong> Render.com</li>
+    <li><strong>Language:</strong> JavaScript (ES6)</li>
+    </ul>
+    <hr>
+    <h1 id="-notes">🧠 Notes</h1>
+    <ul>
+    <li>Proper input validation is performed for all APIs.</li>
+    <li>APIs are secured from SQL Injection by using parameterized queries.</li>
+    <li>APIs are live and accessible for testing.</li>
+    </ul>
+    <hr>
+    <h1 id="-how-to-run-locally">✨ How to Run Locally</h1>
+    <pre><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">&lt;repo-link</span>&gt;
+    cd <span class="hljs-tag">&lt;project-folder&gt;</span>
+    npm install
+    npm <span class="hljs-literal">start</span>
+    </code></pre>
+    <blockquote>
+    <p>Make sure to configure <code>.env</code> file with your MySQL DB credentials.</p>
+    </blockquote>
+    <h1 id="-api-link-https-school-management-api-assignment-jszw-onrender-com-">🚀 <a href="https://school-management-api-assignment-jszw.onrender.com/">API LINK</a></h1>
+    <hr>
+    <h1 id="-conclusion">🎯 Conclusion</h1>
+    <p>This project demonstrates simple, scalable, and production-ready API design for managing schools with location-based sorting.</p>
+    <hr>
+    
+</body>
+</html>
